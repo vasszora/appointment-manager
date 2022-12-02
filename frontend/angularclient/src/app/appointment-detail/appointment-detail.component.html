@@ -1,0 +1,15 @@
+<div *ngIf="appointment">
+  <h2>{{ appointment.description | uppercase }} Details</h2>
+  <div>
+    <label for="appointment-price">Team Ranking: </label>
+    <input
+      id="appointment-price"
+      [(ngModel)]="appointment.price"
+      placeholder="appointment-price"
+    />
+  </div>
+  <button type="button" (click)="goBack()">Back</button>
+  <!--  <div *ngIf="countryService.countryData != null">-->
+  <!--    <pre>{{countryService.countryData | json}}</pre>-->
+  <!--  </div>-->
+</div>

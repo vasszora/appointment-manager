@@ -1,0 +1,18 @@
+<div
+  #appointmentDiv
+  class="appointments"
+  *ngFor="let appointment of appointments; let i = index"
+>
+  <button
+    routerLink="/detail/{{ appointment.id }}"
+    appAppointmentButton
+    type="button"
+  >
+    <!-------------          NgClass and NgStyle example       ------------->
+    <!--          [ngClass]="team === selectedTeam ? 'selected-team' : ''"-->
+    <!--          [ngStyle]="team === selectedTeam ? {color:'white'} : {color:'black'}" -->
+
+    <span class="badge">{{ i + 1 }}.</span>
+    <span class="description">{{appointment.description</span>
+  </button>
+</div>

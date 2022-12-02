@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "angularclient": "file:frontend/angularclient"
+  }
+}

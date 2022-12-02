@@ -1,0 +1,7 @@
+A 1-2 page specification for your project is also a requirement for the course. The specification should include a short description of your project, what functionalities you intend to implement and the design of your data domains (database tables and corresponding entities) you will be using. 
+
+Specification should be in pdf format.
+
+You cannot pass the course if you do not hand in the specification. Please send your specification before the deadline via Teams task.
+
+You receive max 5 points for the specification.

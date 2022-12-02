@@ -1,0 +1,40 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Project Specification}
+\author{Vass Zóra, D0HAMI}
+\date{\today}
+
+\begin{document}
+    \maketitle
+    \section{Introduction}
+    \subsection{Project description}
+    My project is going to be an appointment scheduler and manager for service providers. Some examples would be hairdressers, doctors, nail technicians, yoga teachers, etc.
+    It keeps these providers' appointments in one place. Customers can reserve appointments anytime online. 
+    \subsection{Functionalities}
+    \subsubsection*{Reservation for customers}
+    %Browse calendar of available appointments of the service provider
+    Customers can browse available appointments. It is possible to filter the appointments by date, time, service, and service provider.
+    \subsubsection*{Schedule appointments}
+    %recurring, restrict number of customers, place. description, price, duration
+    Service providers can create appointments. The appointments will have some customizable fields like, number of customers, place, price, duration, etc. 
+    \subsubsection*{Calendar view}
+    %monthly, weekly, daily
+    Users can view their appointments in calendar form. 
+    \section{Backend}
+    \subsection{Database}
+    \subsubsection*{Tables}
+    \begin{itemize}
+        \item Users: stores the client and service provider users
+        \item Appointments: stores the data of appointments given by service providers
+        \item Bookings: stores the appointment id and the user's id who booked the appointment
+        \item Providers: stores additional information about service provider users
+    \end{itemize}
+    \subsubsection*{Relations}
+    \begin{itemize}
+        \item Provider has many Appointments
+        \item Booking has one User
+        \item Appointments has many Bookings
+    \end{itemize}
+
+\end{document}
