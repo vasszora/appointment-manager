@@ -32,4 +32,12 @@ export class AppointmentService {
   getAppointmentById(id: string): Observable<Appointment> {
     return this.http.get<Appointment>(this.appointmentUrl + '/' + id);
   }
+
+  addAppointment(appointment: Appointment) {
+    return this.http.post<Appointment>(
+      this.appointmentUrl + '/' + appointment.provider,
+      appointment
+    );
+  }
+  //todo delete, update, create
 }

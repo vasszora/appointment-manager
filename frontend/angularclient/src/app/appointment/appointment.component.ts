@@ -18,18 +18,45 @@ import { AppointmentService } from '../services/appointment.service';
   styleUrls: ['./appointment.component.css'],
 })
 export class AppointmentComponent implements OnInit {
-  @Input() appointments: Appointment[] = [];
+  appointment: Appointment | undefined;
+
+  appointments: Appointment[] = [];
 
   @ViewChild(AppointmentDetailComponent)
   appointmentDetailComponent!: AppointmentDetailComponent;
   @ViewChildren('appointmentDiv') appointmentDivs!: QueryList<ElementRef>;
 
-  constructor() {}
+  constructor(private appointmentService: AppointmentService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.initAppointments();
+  }
 
-  ngAfterViewInit(): void {
-    //ViewChildren example
-    // this.teamDivs.get(2)?.nativeElement.setAttribute('style', 'border-left: solid black 5px');
+  private initAppointments() {
+    this.appointmentService.getAppointments().subscribe((appointments) => {
+      this.appointments = appointments;
+    });
+  }
+
+  onSubmit() {
+    if (this.appointment) {
+      this.appointmentService
+        .addAppointment(this.appointment)
+        .subscribe((appointment) => {
+          this.appointments.push(appointment);
+        });
+      console.log(this.appointment);
+      this.appointment = undefined;
+    }
+  }
+  addNewAppointment() {
+    this.appointment = new Appointment(
+      this.appointments.length + 1,
+      '',
+      new Date(),
+      0,
+      0,
+      ''
+    );
   }
 }

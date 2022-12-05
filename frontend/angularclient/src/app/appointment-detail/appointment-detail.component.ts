@@ -46,24 +46,4 @@ export class AppointmentDetailComponent implements OnInit {
   goBack() {
     this.location.back();
   }
-
-  ngAfterContentInit() {
-    console.log('AfterContentInit happened');
-  }
-
-  ngAfterContentChecked() {
-    console.log('AfterContentChecked happened');
-  }
-
-  ngAfterViewInit() {
-    console.log('AfterViewInit happened');
-  }
-
-  ngAfterViewChecked() {
-    console.log('AfterViewChecked happened');
-  }
-
-  ngOnDestroy() {
-    console.log('OnDestroy happened');
-  }
 }

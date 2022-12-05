@@ -7,8 +7,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import org.ppke.itk.appointmentmanager.controller.dto.AppointmentDto;
 import org.ppke.itk.appointmentmanager.domain.Appointment;
 import org.ppke.itk.appointmentmanager.repository.AppointmentRepository;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +31,10 @@ import static org.springframework.http.MediaType.APPLICATION_OCTET_STREAM_VALUE;
 import static org.springframework.http.MediaType.APPLICATION_OCTET_STREAM;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Tag(name = "Appointment")
 @Slf4j
@@ -81,4 +86,17 @@ public class AppointmentController {
     public Appointment getAppointmentById(@PathVariable("id") Integer id) {
         return appointmentRepository.findById(id).get();
     }
+
+    @DeleteMapping(value = "/{id}")
+    public void deleteAppointmentById(@PathVariable("id") Integer id) {
+        appointmentRepository.deleteById(id);
+    }
+
+    @PostMapping(value = "/{username}", produces = APPLICATION_JSON_VALUE, consumes = {
+            "application/json;charset=UTF-8" })
+    public Appointment saveAppointment(@RequestBody AppointmentDto appointment,
+            @PathVariable String username) throws ParseException {
+        return appointmentRepository.saveAppointment(appointment, username);
+    }
+
 }

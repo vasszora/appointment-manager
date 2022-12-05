@@ -2,10 +2,14 @@ package org.ppke.itk.appointmentmanager.controller;
 
 import java.util.List;
 
+import org.ppke.itk.appointmentmanager.controller.dto.BookingDto;
 import org.ppke.itk.appointmentmanager.domain.Booking;
 import org.ppke.itk.appointmentmanager.repository.BookingRepository;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,6 +53,20 @@ public class BookingController {
         Page<Booking> bookings = bookingRepository.findAll(PageRequest.of(0, limit, sortParam));
         log.info("Returning {} bookings.", bookings.toString());
         return bookings.toList();
+    }
+
+    @PostMapping(value = "/{appointmentId}/{username}") // book for a given
+                                                        // appointment
+                                                        // by a given user
+    public BookingDto saveBooking(@PathVariable Integer appointmentId,
+            @PathVariable String username) {
+        Booking booking = bookingRepository.saveBooking(appointmentId, username);
+        return BookingDto.fromBooking(booking);
+    }
+
+    @DeleteMapping(value = "/{id}") // delete a booking
+    public void deleteBooking(@PathVariable("id") Integer id) {
+        bookingRepository.deleteById(id);
     }
 
     @GetMapping(value = "/{id}", produces = APPLICATION_JSON_VALUE)

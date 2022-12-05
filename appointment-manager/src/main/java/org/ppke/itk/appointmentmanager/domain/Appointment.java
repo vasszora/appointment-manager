@@ -44,5 +44,6 @@ public class Appointment {
     @JsonBackReference
     @OneToMany(mappedBy = "appointmentOfBooking")
     private List<Booking> bookings = new ArrayList<>();
-    // private String status;? -> fully booked, available, reserved -> enum
+
+    // private AppointmentStatus status;
 }
