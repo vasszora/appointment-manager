@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,7 +39,7 @@ public class BookingController {
             @ApiResponse(responseCode = "200", description = "List of bookings retrieved"),
             @ApiResponse(responseCode = "400", description = "Invalid url params supplied")
     })
-    public List<Booking> getBookings(@RequestParam(required = false, defaultValue = "100") Integer limit,
+    public List<BookingDto> getBookings(@RequestParam(required = false, defaultValue = "100") Integer limit,
             @RequestParam(required = false, defaultValue = "desc") String sort) {
         log.info("Calling GET /bookings endpoint.");
 
@@ -51,8 +50,10 @@ public class BookingController {
                 : Sort.by(Sort.Direction.DESC, "client_id");
 
         Page<Booking> bookings = bookingRepository.findAll(PageRequest.of(0, limit, sortParam));
-        log.info("Returning {} bookings.", bookings.toString());
-        return bookings.toList();
+        log.info("Returning {} bookings.", bookings.getTotalElements());
+
+        List<BookingDto> bookingDtos = bookings.map(BookingDto::fromBooking).toList();
+        return bookingDtos;
     }
 
     @PostMapping(value = "/{appointmentId}/{username}") // book for a given
@@ -74,4 +75,11 @@ public class BookingController {
         log.info("returning booking: {}", bookingRepository.findById(id).get().toString());
         return bookingRepository.findById(id).get();
     }
+
+    @GetMapping(value = "/{username}/", produces = APPLICATION_JSON_VALUE)
+    public List<Booking> getBookingsByUsername(@PathVariable("username") String username) {
+        log.info("returning bookings for user: {}", username);
+        return bookingRepository.findByClientUsername(username);
+    }
+
 }

@@ -11,6 +11,8 @@ import {
 import { Appointment } from './model/appointment.model';
 import { AppointmentDetailComponent } from '../appointment-detail/appointment-detail.component';
 import { AppointmentService } from '../services/appointment.service';
+import { BookingService } from '../services/booking.service';
+import { Booking } from '../booking/model/bookings.model';
 
 @Component({
   selector: 'app-appointments',
@@ -26,7 +28,10 @@ export class AppointmentComponent implements OnInit {
   appointmentDetailComponent!: AppointmentDetailComponent;
   @ViewChildren('appointmentDiv') appointmentDivs!: QueryList<ElementRef>;
 
-  constructor(private appointmentService: AppointmentService) {}
+  constructor(
+    private appointmentService: AppointmentService,
+    private bookingService: BookingService
+  ) {}
 
   ngOnInit(): void {
     this.initAppointments();
@@ -58,5 +63,25 @@ export class AppointmentComponent implements OnInit {
       0,
       ''
     );
+  }
+
+  deleteAppointment(appointment: Appointment) {
+    this.appointmentService
+      .deleteAppointment(appointment.id)
+      .subscribe((app) => {
+        //TODOD
+      });
+  }
+
+  addBooking(appointment: Appointment, client_username: string) {
+    this.bookingService
+      .addBooking(
+        new Booking(
+          this.bookingService.getBookings.length + 1,
+          appointment,
+          client_username
+        )
+      )
+      .subscribe();
   }
 }

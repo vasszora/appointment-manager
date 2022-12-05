@@ -17,6 +17,11 @@ const routes: Routes = [
         (m) => m.AppointmentModule
       ),
   },
+  {
+    path: 'bookings',
+    loadChildren: () =>
+      import('./booking/booking.module').then((m) => m.BookingModule),
+  },
 ];
 @NgModule({
   imports: [CommonModule, RouterModule.forRoot(routes)],

@@ -1,0 +1,10 @@
+<div
+  #bookingDiv
+  class="bookings"
+  *ngFor="let booking of bookings; let i = index"
+>
+  <button>
+    <span class="badge">{{ i + 1 }}.</span>
+    <span class="description">{{ booking.appointment.description }}</span>
+  </button>
+</div>

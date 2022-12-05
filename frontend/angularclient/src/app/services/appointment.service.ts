@@ -39,5 +39,9 @@ export class AppointmentService {
       appointment
     );
   }
+
+  deleteAppointment(id: number) {
+    return this.http.delete(this.appointmentUrl + '/' + id);
+  }
   //todo delete, update, create
 }

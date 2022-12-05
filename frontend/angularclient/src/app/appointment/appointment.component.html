@@ -11,6 +11,16 @@
     <span class="badge">{{ i + 1 }}.</span>
     <span class="description">{{ appointment.description }}</span>
   </button>
+
+  <button
+    class="delete"
+    type="button"
+    (click)="addBooking(appointment, 'username1')"
+    type="button"
+    class="btn btn-primary"
+  >
+    Book for username1
+  </button>
 </div>
 
 <div class="container">
