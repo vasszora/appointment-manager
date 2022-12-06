@@ -47,8 +47,8 @@ public class CustomAppointmentRepositoryImpl implements CustomAppointmentReposit
         // } else {
         // if appointment is not found, create a new one
         new_appointment = new Appointment();
-        new_appointment.setUser_id(existingUser.get());
-        new_appointment.setStart_time(new SimpleDateFormat("YYYY-MM-DD'T'HH:mm").parse(appointment.getStart_time()));
+        new_appointment.setProvider(existingUser.get());
+        new_appointment.setStartTime(new SimpleDateFormat("YYYY-MM-DD'T'HH:mm").parse(appointment.getStartTime()));
         new_appointment.setDuration(appointment.getDuration());
         new_appointment.setPrice(appointment.getPrice());
         new_appointment.setDescription(appointment.getDescription());

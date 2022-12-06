@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AppointmentDto {
     private Integer id;
-    private String start_time;
+    private String startTime;
     private Integer duration;
     private Integer price;
     private String description;
@@ -21,11 +21,11 @@ public class AppointmentDto {
     public static AppointmentDto fromAppointment(Appointment appointment) {
         return new AppointmentDto(
                 appointment.getId(),
-                appointment.getStart_time().toString(),
+                appointment.getStartTime().toString(),
                 appointment.getDuration(),
                 appointment.getPrice(),
                 appointment.getDescription(),
-                appointment.getUser_id().getUsername());
+                appointment.getProvider().getUsername());
     }
 
 }

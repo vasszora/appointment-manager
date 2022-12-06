@@ -7,13 +7,13 @@ CONSTRAINT username_unique UNIQUE (username)
 
 CREATE TABLE "appointment" ( 
 id INTEGER NOT NULL PRIMARY KEY auto_increment,
-start_time TIMESTAMP,
+startTime TIMESTAMP,
 duration INTEGER,
 price INTEGER,
 description VARCHAR(100),
-user_id INTEGER,
+provider INTEGER,
 CONSTRAINT fk_users_appointment
-      FOREIGN KEY(user_id)
+      FOREIGN KEY(provider)
         REFERENCES users(id)
 );
 

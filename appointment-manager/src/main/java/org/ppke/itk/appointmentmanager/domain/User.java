@@ -33,7 +33,7 @@ public class User {
     private String username;
     private String email;
 
-    @OneToMany(mappedBy = "user_id")
+    @OneToMany(mappedBy = "provider")
     private List<Appointment> appointments = new ArrayList<>();
 }
 

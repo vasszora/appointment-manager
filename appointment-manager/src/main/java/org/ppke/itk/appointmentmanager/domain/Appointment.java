@@ -19,6 +19,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -31,15 +33,17 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
-    private Date start_time;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date startTime;
     private Integer duration;
     private Integer price;
     private String description;
 
     @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
-    private User user_id;
+    @JoinColumn(name = "provider")
+    private User provider;
 
     @JsonBackReference
     @OneToMany(mappedBy = "appointmentOfBooking")

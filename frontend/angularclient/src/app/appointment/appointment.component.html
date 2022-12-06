@@ -3,14 +3,11 @@
   class="appointments"
   *ngFor="let appointment of appointments; let i = index"
 >
-  <button
-    routerLink="/detail/{{ appointment.id }}"
-    appAppointmentButton
-    type="button"
-  >
-    <span class="badge">{{ i + 1 }}.</span>
-    <span class="description">{{ appointment.description }}</span>
-  </button>
+  <span class="badge">{{ i + 1 }}. </span>
+  <span class="description">{{ appointment.description }} </span>
+  <span class="date">{{ appointment.startTime | date : "yyyy.MM.dd" }} </span>
+  <span class="duration">{{ appointment.duration }} minutes </span>
+  <span class="price">{{ appointment.price }} Ft </span>
 
   <button
     class="delete"
@@ -54,7 +51,7 @@
         type="datetime-local"
         class="form-control"
         id="date"
-        [(ngModel)]="appointment.start_time"
+        [(ngModel)]="appointment.startTime"
         name="date"
       />
     </div>

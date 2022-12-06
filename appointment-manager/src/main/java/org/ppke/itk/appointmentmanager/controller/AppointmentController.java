@@ -32,6 +32,13 @@ import static org.springframework.http.MediaType.APPLICATION_OCTET_STREAM;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -99,4 +106,14 @@ public class AppointmentController {
         return appointmentRepository.saveAppointment(appointment, username);
     }
 
+    @GetMapping(value = "/{username}/appointments", produces = APPLICATION_JSON_VALUE)
+    public List<Appointment> getAppointmentsByUsername(@PathVariable String username) {
+        return appointmentRepository.findByProviderUsername(username);
+    }
+
+    @GetMapping(value = "/current", produces = APPLICATION_JSON_VALUE)
+    public List<Appointment> getCurrentAppointments() throws ParseException {
+        return appointmentRepository
+                .findByStartTimeAfter(Date.from(LocalDate.now().atStartOfDay().toInstant(ZoneOffset.UTC)));
+    }
 }
