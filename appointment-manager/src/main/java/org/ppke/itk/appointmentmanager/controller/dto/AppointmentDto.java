@@ -1,8 +1,6 @@
 package org.ppke.itk.appointmentmanager.controller.dto;
 
 import org.ppke.itk.appointmentmanager.domain.Appointment;
-import org.ppke.itk.appointmentmanager.domain.User;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

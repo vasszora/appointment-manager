@@ -14,7 +14,6 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,16 +35,3 @@ public class User {
     @OneToMany(mappedBy = "provider")
     private List<Appointment> appointments = new ArrayList<>();
 }
-
-// @Data
-// @AllArgsConstructor
-// @Entity
-// public class User {
-// @Id
-// @GeneratedValue(strategy = GenerationType.AUTO)
-// @Column(name = "id", nullable = false)
-// private Integer id;
-// private String name;
-// private String email;
-// private String phoneNumber;
-// }

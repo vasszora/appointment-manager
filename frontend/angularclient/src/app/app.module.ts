@@ -14,6 +14,7 @@ import { AppointmentModule } from './appointment/appointment.module';
 import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { BookingService } from './services/booking.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
       useFactory: adapterFactory,
     }),
   ],
-  providers: [AppointmentService],
+  providers: [AppointmentService, BookingService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

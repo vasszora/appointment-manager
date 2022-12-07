@@ -21,9 +21,15 @@ public class CustomBookingRepositoryImpl implements CustomBookingRepository {
     public Booking saveBooking(Integer appointmentId, String username) {
         Booking booking;
         Appointment appointment = entityManager.find(Appointment.class, appointmentId);
+
         if (appointment == null) {
             throw new NoSuchElementException(String.format("No match found for id %s", appointmentId));
         }
+
+        if (appointment.getMaxBookings() <= appointment.getBookings().size()) {
+            throw new IllegalStateException(String.format("Appointment %s is full", appointmentId));
+        }
+
         Optional<Booking> existingBooking = entityManager
                 .createQuery(
                         "SELECT b FROM Booking b WHERE b.client.username = :username and b.appointmentOfBooking.id = :appointmentId",

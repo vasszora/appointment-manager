@@ -1,7 +1,5 @@
 package org.ppke.itk.appointmentmanager.domain;
 
-import java.util.ArrayList;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
