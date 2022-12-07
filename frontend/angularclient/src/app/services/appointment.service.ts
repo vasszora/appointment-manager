@@ -17,6 +17,7 @@ export class AppointmentService {
 
   getAppointments(): Observable<Appointment[]> {
     const appointments = this.http.get<Appointment[]>(this.appointmentUrl);
+    console.log(appointments);
     this.messageService.add('AppointmentService: fetched appointments');
     return appointments;
   }

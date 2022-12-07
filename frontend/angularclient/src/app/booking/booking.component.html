@@ -5,6 +5,11 @@
 >
   <button>
     <span class="badge">{{ i + 1 }}.</span>
-    <span class="description">{{ booking.appointment.description }}</span>
+    <span class="date">
+      {{ booking.appointment.startTime | date : "yyyy.MM.dd HH:mm" }}</span
+    >
+    <span class="description">{{ booking.appointment.description }} </span>
+    <span class="duration">{{ booking.appointment.duration }} minutes </span>
+    <span class="price">{{ booking.appointment.price }} Ft </span>
   </button>
 </div>

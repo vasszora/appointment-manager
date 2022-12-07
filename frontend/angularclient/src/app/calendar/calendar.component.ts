@@ -28,10 +28,8 @@ export class CalendarComponent implements OnInit {
   private initEvents() {
     console.log('initEvents');
     this.appointmentService.getAppointments().subscribe((appointments) => {
-      console.log('appointments', appointments);
-      this.events = this.convertAppointmentsToEvents(appointments);
+      this.convertAppointmentsToEvents(appointments);
     });
-    this.refresh.next();
   }
 
   setView(view: CalendarView) {
@@ -40,7 +38,6 @@ export class CalendarComponent implements OnInit {
 
   setEvents(events: CalendarEvent[]) {
     this.events = events;
-    this.refresh.next();
   }
 
   private convertAppointmentsToEvents(appointments: Appointment[]) {
@@ -56,8 +53,8 @@ export class CalendarComponent implements OnInit {
       });
     });
 
-    console.log('events', events);
-    return events;
+    this.refresh.next();
+    this.events = events;
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
