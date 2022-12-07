@@ -29,7 +29,6 @@ import { LoginComponent } from './auth/login/login.component';
     AppointmentButtonDirective,
     CalendarComponent,
     LoginComponent,
-    //LoginComponent,
   ],
   imports: [
     BrowserModule,
