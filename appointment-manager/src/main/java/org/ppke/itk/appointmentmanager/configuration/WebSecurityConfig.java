@@ -18,7 +18,7 @@ public class WebSecurityConfig {
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
                 http
                                 .authorizeHttpRequests((requests) -> requests
-                                                .antMatchers("/", "/home", "/appointments", "bookings", "calendar")
+                                                .antMatchers("/", "/home", "/appointments", "/bookings", "calendar")
                                                 // because login doesn't work from frontend
                                                 .permitAll()
                                                 .anyRequest().authenticated())
