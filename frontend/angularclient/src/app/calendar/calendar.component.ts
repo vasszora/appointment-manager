@@ -12,7 +12,7 @@ import { AppointmentService } from '../services/appointment.service';
 })
 export class CalendarComponent implements OnInit {
   viewDate: Date = new Date();
-  view: CalendarView = CalendarView.Week;
+  view: CalendarView = CalendarView.Month;
   CalendarView = CalendarView;
 
   events: CalendarEvent[] = [];
@@ -59,6 +59,5 @@ export class CalendarComponent implements OnInit {
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     console.log(date);
-    //this.openAppointmentList(date)
   }
 }

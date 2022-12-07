@@ -7,7 +7,7 @@ insert into users(username, email) values ('Hairdresser_Harry', 'hair_rules@gmai
 insert into users(username, email) values ('Dentist_Diana', 'i_like_teeth@freemail.com');
 insert into users(username, email) values ('Yoga_Teacher_Yolanda', 'yoga_above_everything@citromail.com');
 
-insert into appointment(startTime, duration, price, description, maxBookings, provider) values(to_timestamp('2022-12-19 19:00','YYYY-MM-DD HH24:mimi'), 120, 5000, 'Hairdresser: cut and color', 1,(select id from users where username = 'Hairdresser_Harry'));
+insert into appointment(startTime, duration, price, description, maxBookings, provider) values(to_timestamp('2022-12-19 19:00','YYYY-MM-DD HH24:mimi'), 120, 5000, 'Hairdresser: cut and color', 1, (select id from users where username = 'Hairdresser_Harry'));
 insert into appointment(startTime, duration, price, description, maxBookings, provider) values(to_timestamp('2022-12-20 10:00','YYYY-MM-DD HH24:mimi'), 60, 10000, 'Teeth whitening', 1, (select id from users where username = 'Dentist_Diana'));
 insert into appointment(startTime, duration, price, description, maxBookings, provider) values(to_timestamp('2022-12-20 11:00','YYYY-MM-DD HH24:mimi'), 60, 10000, 'Teeth whitening', 1, (select id from users where username = 'Dentist_Diana'));
 insert into appointment(startTime, duration, price, description, maxBookings, provider) values(to_timestamp('2022-12-12 17:30','YYYY-MM-DD HH24:mimi'), 90, 3000, 'Yoga flow', 5, (select id from users where username = 'Yoga_Teacher_Yolanda'));

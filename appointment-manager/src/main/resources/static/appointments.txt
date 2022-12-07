@@ -1,1 +1,0 @@
-new Appointment(1, "2021-01-01 10:00", 60, "Dr. John Doe", 100)

@@ -50,4 +50,10 @@ export class BookingComponent implements OnInit {
       ''
     );
   }
+
+  deleteBooking(booking: Booking) {
+    this.bookingService.deleteBooking(booking.id).subscribe((_) => {
+      this.bookings = this.bookings.filter((b) => b.id !== booking.id);
+    });
+  }
 }

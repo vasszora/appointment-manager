@@ -8,13 +8,14 @@
   <span class="date"
     >{{ appointment.startTime | date : "yyyy.MM.dd HH:mm" }}
   </span>
+  <span class="date2">{{ appointment.startTime }}</span>
   <span class="duration">{{ appointment.duration }} minutes </span>
   <span class="price">{{ appointment.price }} Ft </span>
 
   <button
     class="btn btn-primary"
     type="button"
-    (click)="addBooking(appointment, 'username1')"
+    routerLink="/bookings/add"
     type="button"
   >
     Book appointment

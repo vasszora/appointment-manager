@@ -47,5 +47,8 @@ export class BookingService {
       booking
     );
   }
-  //todo delete, update, create
+
+  deleteBooking(id: number) {
+    return this.http.delete(this.bookingUrl + '/' + id);
+  }
 }

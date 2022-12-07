@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { authGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -18,9 +19,20 @@ const routes: Routes = [
       ),
   },
   {
+    canActivate: [authGuard],
     path: 'bookings',
     loadChildren: () =>
       import('./booking/booking.module').then((m) => m.BookingModule),
+  },
+  {
+    path: 'calendar',
+    loadChildren: () =>
+      import('./calendar/calendar.module').then((m) => m.CalendarModule),
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./auth/login/login.module').then((m) => m.LoginModule),
   },
 ];
 @NgModule({

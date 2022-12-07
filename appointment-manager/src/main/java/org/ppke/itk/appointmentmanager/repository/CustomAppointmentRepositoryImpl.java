@@ -1,7 +1,9 @@
 package org.ppke.itk.appointmentmanager.repository;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -33,7 +35,7 @@ public class CustomAppointmentRepositoryImpl implements CustomAppointmentReposit
 
         new_appointment = new Appointment();
         new_appointment.setProvider(existingUser.get());
-        new_appointment.setStartTime(new SimpleDateFormat("YYYY-MM-DD'T'HH:mm").parse(appointment.getStartTime()));
+        new_appointment.setStartTime(LocalDateTime.parse(appointment.getStartTime()));
         new_appointment.setDuration(appointment.getDuration());
         new_appointment.setPrice(appointment.getPrice());
         new_appointment.setDescription(appointment.getDescription());

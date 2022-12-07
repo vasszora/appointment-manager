@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,6 +25,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Data
 @AllArgsConstructor
@@ -34,9 +37,8 @@ public class Appointment {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Basic
-    @Temporal(TemporalType.DATE)
-    private Date startTime;
+    @Column(name = "starttime", columnDefinition = "TIMESTAMP")
+    private LocalDateTime startTime;
     private Integer duration;
     private Integer price;
     private String description;
@@ -51,5 +53,4 @@ public class Appointment {
     private List<Booking> bookings = new ArrayList<>();
 
     private Integer maxBookings;
-    private AppointmentStatus status;
 }

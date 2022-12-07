@@ -65,6 +65,8 @@ public class AppointmentController {
 
         Page<Appointment> appointments = appointmentRepository.findAll(PageRequest.of(0, limit, sortParam));
 
+        log.info(appointments.toList().toString());
+
         return appointments.toList();
     }
 
