@@ -54,11 +54,12 @@ export class AppointmentComponent implements OnInit {
       this.appointment = undefined;
     }
   }
+
   addNewAppointment() {
     this.appointment = new Appointment(
       this.appointments.length + 1,
       '',
-      new Date(),
+      '',
       0,
       0,
       ''

@@ -14,9 +14,6 @@ public interface BookingRepository extends JpaRepository<Booking, Integer>, Cust
 
     List<Booking> findByAppointmentOfBookingId(Integer appointmentId);
 
-    @Query("select b from Booking b where b.appointmentOfBooking.id = :appointmentId")
-    List<Booking> findAllByMatchId(Integer appointmentId);
-
     void deleteById(Integer id);
 
     List<Booking> findByClientUsername(String username);

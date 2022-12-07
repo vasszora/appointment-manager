@@ -5,7 +5,9 @@
 >
   <span class="badge">{{ i + 1 }}. </span>
   <span class="description">{{ appointment.description }} </span>
-  <span class="date">{{ appointment.startTime | date : "yyyy.MM.dd" }} </span>
+  <span class="date"
+    >{{ appointment.startTime | date : "yyyy.MM.dd HH:mm" }}
+  </span>
   <span class="duration">{{ appointment.duration }} minutes </span>
   <span class="price">{{ appointment.price }} Ft </span>
 
@@ -16,7 +18,7 @@
     type="button"
     class="btn btn-primary"
   >
-    Book for username1
+    Book appointment
   </button>
 </div>
 
@@ -26,14 +28,19 @@
   </button>
   <form (ngSubmit)="onSubmit()" #appointmentForm="ngForm" *ngIf="appointment">
     <div class="form-group">
-      <label for="name">Username</label
-      ><input
+      <label for="name">Username</label>
+      <input
         type="text"
         class="form-control"
         id="name"
+        required
         [(ngModel)]="appointment.provider"
         name="name"
+        #name="ngModel"
       />
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+        Username is required
+      </div>
     </div>
     <div class="form-group">
       <label for="description">Description</label
@@ -41,9 +48,17 @@
         type="text"
         class="form-control"
         id="description"
+        required
         [(ngModel)]="appointment.description"
         name="description"
+        #description="ngModel"
       />
+      <div
+        [hidden]="description.valid || description.pristine"
+        class="alert alert-danger"
+      >
+        Description is required
+      </div>
     </div>
     <div class="form-group">
       <label for="date">Date</label
@@ -51,24 +66,39 @@
         type="datetime-local"
         class="form-control"
         id="date"
+        required
         [(ngModel)]="appointment.startTime"
         name="date"
+        #date="ngModel"
       />
+      <div [hidden]="date.valid || date.pristine" class="alert alert-danger">
+        Date is required
+      </div>
     </div>
     <div class="form-group">
       <label for="duration">Duration</label
       ><input
         type="number"
+        min="1"
         class="form-control"
         id="duration"
+        required
         [(ngModel)]="appointment.duration"
         name="duration"
+        #duration="ngModel"
       />
+      <div
+        [hidden]="duration.valid || duration.pristine"
+        class="alert alert-danger"
+      >
+        Duration is required
+      </div>
     </div>
     <div class="form-group">
       <label for="price">Price</label
       ><input
         type="number"
+        min="0"
         class="form-control"
         id="price"
         [(ngModel)]="appointment.price"

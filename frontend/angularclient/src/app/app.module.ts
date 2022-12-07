@@ -11,15 +11,27 @@ import { MessagesComponent } from './messages/messages.component';
 import { AppointmentService } from './services/appointment.service';
 import { AppointmentButtonDirective } from './directives/appointment-button.directive';
 import { AppointmentModule } from './appointment/appointment.module';
+import { CalendarComponent } from './calendar/calendar.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
-  declarations: [AppComponent, MessagesComponent, AppointmentButtonDirective],
+  declarations: [
+    AppComponent,
+    MessagesComponent,
+    AppointmentButtonDirective,
+    CalendarComponent,
+  ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
   providers: [AppointmentService],
   bootstrap: [AppComponent],

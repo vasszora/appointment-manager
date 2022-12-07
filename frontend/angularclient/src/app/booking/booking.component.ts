@@ -46,7 +46,7 @@ export class BookingComponent implements OnInit {
   addNewBooking() {
     this.booking = new Booking(
       this.bookings.length + 1,
-      new Appointment(0, '', new Date(), 0, 0, ''),
+      new Appointment(0, '', '', 0, 0, ''),
       ''
     );
   }

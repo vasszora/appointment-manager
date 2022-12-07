@@ -76,10 +76,17 @@ public class BookingController {
         return bookingRepository.findById(id).get();
     }
 
-    @GetMapping(value = "/{username}/", produces = APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/client/{username}", produces = APPLICATION_JSON_VALUE)
     public List<Booking> getBookingsByUsername(@PathVariable("username") String username) {
         log.info("returning bookings for user: {}", username);
         return bookingRepository.findByClientUsername(username);
+    }
+
+    @GetMapping(value = "/appointment/{appointmentId}", produces = APPLICATION_JSON_VALUE)
+    public List<BookingDto> getBookingsByAppointmentId(@PathVariable("appointmentId") Integer appointmentId) {
+        log.info("returning bookings for appointment: {}", appointmentId);
+        List<Booking> bookings = bookingRepository.findByAppointmentOfBookingId(appointmentId);
+        return bookings.stream().map(BookingDto::fromBooking).toList();
     }
 
 }
