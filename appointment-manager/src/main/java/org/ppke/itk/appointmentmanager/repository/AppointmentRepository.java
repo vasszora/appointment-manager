@@ -1,5 +1,6 @@
 package org.ppke.itk.appointmentmanager.repository;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -22,5 +23,5 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
     void deleteById(Integer id);
 
     @Query("SELECT a FROM Appointment a WHERE a.startTime >= :startTime")
-    List<Appointment> findByStartTimeAfter(Date startTime);
+    List<Appointment> findByStartTimeAfter(LocalDateTime startTime);
 }

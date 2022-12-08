@@ -52,5 +52,6 @@ public class Appointment {
     @OneToMany(mappedBy = "appointmentOfBooking")
     private List<Booking> bookings = new ArrayList<>();
 
+    @Column(name = "max_bookings")
     private Integer maxBookings;
 }

@@ -15,6 +15,7 @@ public class AppointmentDto {
     private Integer price;
     private String description;
     private String username;
+    private Integer maxBookings;
 
     public static AppointmentDto fromAppointment(Appointment appointment) {
         return new AppointmentDto(
@@ -23,7 +24,8 @@ public class AppointmentDto {
                 appointment.getDuration(),
                 appointment.getPrice(),
                 appointment.getDescription(),
-                appointment.getProvider().getUsername());
+                appointment.getProvider().getUsername(),
+                appointment.getMaxBookings());
     }
 
 }

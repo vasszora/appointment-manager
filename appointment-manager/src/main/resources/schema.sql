@@ -13,7 +13,7 @@ startTime timestamp,
 duration INTEGER,
 price INTEGER,
 description VARCHAR(100),
-maxBookings INTEGER,
+max_bookings INTEGER,
 provider INTEGER,
 CONSTRAINT pk_appointment PRIMARY KEY (id),
 CONSTRAINT fk_users_appointment

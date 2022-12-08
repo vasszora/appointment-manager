@@ -33,6 +33,7 @@ import static org.springframework.http.MediaType.APPLICATION_OCTET_STREAM;
 import java.io.IOException;
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.List;
@@ -112,6 +113,6 @@ public class AppointmentController {
     @GetMapping(value = "/current", produces = APPLICATION_JSON_VALUE)
     public List<Appointment> getCurrentAppointments() throws ParseException {
         return appointmentRepository
-                .findByStartTimeAfter(Date.from(LocalDate.now().atStartOfDay().toInstant(ZoneOffset.UTC)));
+                .findByStartTimeAfter(LocalDateTime.now());
     }
 }

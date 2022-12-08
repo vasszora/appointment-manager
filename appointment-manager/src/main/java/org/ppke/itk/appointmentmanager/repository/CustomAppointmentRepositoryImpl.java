@@ -4,6 +4,9 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.ChronoField;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -35,11 +38,16 @@ public class CustomAppointmentRepositoryImpl implements CustomAppointmentReposit
 
         new_appointment = new Appointment();
         new_appointment.setProvider(existingUser.get());
-        new_appointment.setStartTime(LocalDateTime.parse(appointment.getStartTime()));
+        DateTimeFormatter df = new DateTimeFormatterBuilder().appendPattern("YYYY-MM-dd HH:mm")
+                .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
+                .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
+                .parseDefaulting(ChronoField.YEAR, 2022)
+                .toFormatter();
+        new_appointment.setStartTime(LocalDateTime.parse(appointment.getStartTime(), df));
         new_appointment.setDuration(appointment.getDuration());
         new_appointment.setPrice(appointment.getPrice());
         new_appointment.setDescription(appointment.getDescription());
-        new_appointment.setBookings(null);
+        new_appointment.setMaxBookings(appointment.getMaxBookings());
         entityManager.persist(new_appointment);
 
         return new_appointment;
