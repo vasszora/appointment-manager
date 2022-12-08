@@ -19,7 +19,7 @@ const routes: Routes = [
       ),
   },
   {
-    canActivate: [authGuard],
+    //canActivate: [authGuard],
     path: 'bookings',
     loadChildren: () =>
       import('./booking/booking.module').then((m) => m.BookingModule),
